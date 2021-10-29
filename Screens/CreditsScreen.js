@@ -1,12 +1,24 @@
+import { NavigationContainer } from '@react-navigation/native';
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { render } from 'react-dom';
+import { Text, View, StyleSheet,TouchableOpacity,Button, Settings} from 'react-native';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import Counter from '../onChange/Counter';
+import InputCredits from '../onChange/InputCredits';
 
-//purchase credits for bookings washing machine
-export default function CreditsScreen() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Top up credits</Text>
-      </View>
-    );
-  }
+
+
+
+
+export default function CreditsScreen(){
+ 
   
+  return(
+    <View>
+      <InputCredits/>
+    </View>
+  )
+}
+
