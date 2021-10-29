@@ -68,7 +68,7 @@ export default function InputCredits(){
   icon={{
     name: "arrow-right",
     size: 15,
-    color: "Navy"
+    // color: "Navy"
   }}
   
   
@@ -93,7 +93,7 @@ export default function InputCredits(){
       fontWeight: "bold",
       textAlign: "center",
       fontSize: 30,
-      color: "dark blue",
+      color: "blue",
       flex: 2,
      }
     })

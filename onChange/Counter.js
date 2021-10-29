@@ -41,10 +41,10 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       alignContent: 'center'
     },
-    text:{
-      flex:'row',
+    // text:{
+    //   flex:'2',
       
-    }
+    // }
     
   });
 

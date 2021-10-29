@@ -18,7 +18,7 @@ const MyComponent = () => {
  const showDialogBobby = () => setVisiblebobby(true);
 const hideDialogBobby = () => setVisiblebobby(false);
   return(
-    <Provider>
+  <Provider>
    <View style={{flexDirection:'row'}}>
   <List.AccordionGroup style = {{flex:1}}>
     <List.Accordion title="Saraca Hall" id="1">

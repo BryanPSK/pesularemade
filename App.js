@@ -14,7 +14,14 @@ import BookingsScreen from './Screens/BookingsScreen'; //import from screens fol
 import SettingsScreen from './Screens/SettingsScreen'; //import from screens folder
 import CreditsScreen from './Screens/CreditsScreen'; //import from screens folder
 import FontAwesome from "react-native-vector-icons/FontAwesome"; //for navigation bar icons
+// import { registerRootComponent } from 'expo';
+// class App extends React.Component {
+//   render() {
+//     return <View />;
+//   }
+// }
 
+// registerRootComponent(AfterLogin);
 const Tab = createBottomTabNavigator();   //bottom navigation bar
 const Stack = createStackNavigator();
 
