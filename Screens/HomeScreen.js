@@ -71,6 +71,11 @@ firebase.firestore()
     isbooked: true,
     // timestamp: firebase.firestore.FieldValue.serverTimestamp()
   })
+  const db = firebase.firestore();
+  const decrement = firebase.firestore.FieldValue.increment(-1);
+  const storyRef = db.collection('credits').doc('wallet');
+  // Update read count
+  storyRef.update({ value: decrement });
   console.log('machine1 forcebooked')
 }
 //function to unbook machine 1. updates the 'isbooked' boolean field in firestore.
@@ -148,6 +153,20 @@ forceunbookmachine1
   
 }
 
+function checkcredits(){
+  firebase.firestore()
+  .collection('credits')
+  .doc('wallet')
+  .get('value')
+  .then(
+    documentSnapshot=>{
+      var hi = documentSnapshot.get('value')
+      console.log('6')
+      return (hi)
+    }
+  )
+}
+;
 
 
 
@@ -170,6 +189,7 @@ forceunbookmachine1
       if(isbooked == false){
         //check if got money first (shihui) then minus $1
         forcebookmachine1()
+        checkcredits()
         //add time stamp. if timeout, add refund $1 (derick)
         //push user creds into firebase (derick)
         console.log('machine1 booked successfully')

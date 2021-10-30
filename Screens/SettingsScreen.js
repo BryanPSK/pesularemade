@@ -68,15 +68,24 @@ export default function SettingsScreen(){
     <List.Accordion title="Frequently Asked Question" titleStyle={styles.menuItemText}
     left={props => <List.Icon {...props} icon="folder" color={Colors.blue500}/>}
     id="1">
-      <List.Item title="Q1.How does Pesula works?" />
-        <Text>......................................................</Text>
-        <Divider/>
-      <List.Item title="Q2.How to book?" />
-        <Text>......................................................</Text>
-        <Divider/>
-        <List.Item title="Q3.Is there refund?"/>
-        <Text>......................................................</Text>
-        <Divider/>
+      <List.AccordionGroup>
+        <List.Accordion title="Q1.How does Pesula works?" id="2">
+         <List.Item title=".................................." />
+          <Divider/>
+        </List.Accordion>
+        </List.AccordionGroup>
+        <List.AccordionGroup>
+        <List.Accordion title="Q2.How to book?" id="2">
+         <List.Item title=".................................." />
+          <Divider/>
+        </List.Accordion>
+        </List.AccordionGroup>
+        <List.AccordionGroup>
+        <List.Accordion title="Q3.Is there refund?" id="2">
+         <List.Item title=".................................." />
+          <Divider/>
+        </List.Accordion>
+        </List.AccordionGroup>
     </List.Accordion>
     
   </List.AccordionGroup>
