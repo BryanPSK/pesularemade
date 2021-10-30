@@ -3,7 +3,7 @@ import * as React from 'react';
 import { View, Text,ScrollView } from 'react-native';
 import { List,FAB, Modal,Portal,Provider,Button,Dialog,Paragraph } from 'react-native-paper'
 import { checkbookingavailability } from './Screens/HomeScreen';
-import 'firebase/firestore';
+
 const MyComponent = () => {
 
   const [state, setState] = React.useState({ open: false });
@@ -19,9 +19,9 @@ const MyComponent = () => {
 const hideDialogBobby = () => setVisiblebobby(false);
   return(
   <Provider>
-   <View style={{flexDirection:'row'}}>
+   <View style={{flexDirection:'column'}}>
   <List.AccordionGroup style = {{flex:1}}>
-    <List.Accordion title="Saraca Hall" id="1">
+    <List.Accordion title="Saraca Hall" id="1" style={{flex:1}}>
         <List.AccordionGroup>
         <List.Accordion title="Level 6" id="2">
         <List.Item title= "Sophie" onPress={showDialogSophie}/>

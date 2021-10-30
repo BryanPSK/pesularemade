@@ -10,7 +10,7 @@ export default function InputCredits(){
   const[count,setCount]=useState(0)
   
     return(
-<View > 
+<View style={{flexDirection:'column'}}> 
 
 <Header 
   leftComponent={{ icon: 'chevron-left', color: '#191970', iconStyle: { color: '#191970',size: 50 } }} //change to a button that navigates to the prev screen?
@@ -21,7 +21,7 @@ export default function InputCredits(){
   /* rightComponent={{ icon: 'home', color: '#fff' }} */
 />
 
-<Text style={styles.text}> You have {count} credits in your wallet </Text>
+<Text style={styles.text}>You have {count} credits in your wallet </Text>
 <View style={styles.buttons} >
   <Button onPress={() =>setCount(count+5)}
   title="+5"
@@ -92,8 +92,8 @@ export default function InputCredits(){
      text:{
       fontWeight: "bold",
       textAlign: "center",
-      fontSize: 30,
+      fontSize: 24,
       color: "blue",
-      flex: 2,
+      
      }
     })

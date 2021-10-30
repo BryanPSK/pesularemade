@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Settings, StyleSheet, View , SafeAreaView} from 'react-native';
-import { Dialog,Portal,Provider,Paragraph,Button,Avatar, Title, Caption, Text, TouchableRipple } from 'react-native-paper';
+import { Settings, StyleSheet, View ,ScrollView, SafeAreaView} from 'react-native';
+import { Colors,Divider,Dialog,Portal,Provider,Paragraph,Button,Avatar, Title, Caption, Text, List,TouchableRipple } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { checkbookingavailability } from './HomeScreen';
 //possible user profile settings such as display name etc? or set favourite hall?
@@ -11,6 +11,7 @@ export default function SettingsScreen(){
     return(
       <Provider>
       <SafeAreaView style = {styles.container}>
+        <ScrollView>
         <View style={styles.userInfoSection}>
           <View style={{flexDirection:'row', marginTop: 15}}>
             <Avatar.Image
@@ -63,14 +64,30 @@ export default function SettingsScreen(){
               <Text style = {styles.menuItemText}>Payment Method</Text>
             </View>
           </Button>
-          <Button onPress={()=>alert('Dialog of FAQ')}>
+    <List.AccordionGroup>
+    <List.Accordion title="Frequently Asked Question" titleStyle={styles.menuItemText}
+    left={props => <List.Icon {...props} icon="folder" color={Colors.blue500}/>}
+    id="1">
+      <List.Item title="Q1.How does Pesula works?" />
+        <Text>......................................................</Text>
+        <Divider/>
+      <List.Item title="Q2.How to book?" />
+        <Text>......................................................</Text>
+        <Divider/>
+        <List.Item title="Q3.Is there refund?"/>
+        <Text>......................................................</Text>
+        <Divider/>
+    </List.Accordion>
+    
+  </List.AccordionGroup>
+          {/* <Button onPress={()=>alert('Dialog of FAQ')}>
             <View style={styles.menuItem}>
               <Icon name = 'account-check-outline' color = '#FF6347' size={25}></Icon>
               <Text style = {styles.menuItemText}>Frequently Asked Questions</Text>
             </View>
-          </Button>
+          </Button> */}
         </View>
-
+            </ScrollView>
       </SafeAreaView>
       </Provider>
     )

@@ -23,7 +23,7 @@ function BookingsScreen({ navigation }) {
     <Card.Title title="Welcome!" subtitle="Please choose the washing machine you want to use!" left={LeftContent} />
     <Card.Cover source={{ uri: 'https://www.bestslogans.com/img/pics/201711_1113_fdehf.jpg' }} />
     <Card.Content>
-    <Paragraph><MyComponent/></Paragraph>
+   <MyComponent/>
     </Card.Content>
 {/*     <Card.Actions>
     <Button mode="outlined" onPress={() => navigation.navigate('SaracaHall')}>
@@ -97,11 +97,11 @@ const Stack = createStackNavigator()
       <Stack.Navigator>
         
         <Stack.Screen name ='Bookings' component ={BookingsScreen} 
-        options={{headerRight:() => <View><TextInput placeholder ='Credit Value'
+        /* options={{headerRight:() => <View><TextInput placeholder ='Credit Value'
         onChangeText={(count) => setCount(count)}
         /></View>
           
-        }} />
+        }} */ />
         <Stack.Screen name ='SaracaHall' component ={SaracaHallScreen} />
         <Stack.Screen
         name ='TamarindHall'
