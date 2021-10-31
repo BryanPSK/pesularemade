@@ -44,14 +44,13 @@ export default function MainStack() {
   );
 }
 
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
+}
 
 function LoginScreen({ navigation }) { //FIRST LOGIN SCREEN
-  
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-  
-  
   return (
     <View style={styles.container}>
  
@@ -61,7 +60,7 @@ function LoginScreen({ navigation }) { //FIRST LOGIN SCREEN
           style={styles.TextInput}
           placeholder="Email."
           placeholderTextColor="#003f5c"
-          onChangeText={() => setEmail(email)} //SET EMAIL
+          onChangeText={(email) => setEmail(email)} //SET EMAIL
         />
       </View>
  
@@ -71,9 +70,8 @@ function LoginScreen({ navigation }) { //FIRST LOGIN SCREEN
           placeholder="Password."
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
-          onChangeText={() => setPassword(password)} //SET PASSWORD
+          onChangeText={(password) => setPassword(password)} //SET PASSWORD
         />
-        <Text>{setPassword}</Text>
       </View>
  
       <TouchableOpacity> 

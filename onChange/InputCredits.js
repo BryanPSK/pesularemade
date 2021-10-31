@@ -34,6 +34,8 @@ export default function InputCredits()
     setCount(0)
     reset()
   }
+  //now the problem is when can book, -1 credit so how
+  //to update the credits page???
   return(
     <View style={{justifyContent:'space-between'}}> 
     <Header 
@@ -47,7 +49,7 @@ export default function InputCredits()
     
   
   
-<Text style={styles.text}> You have {finalcount} credits in your wallet </Text>
+<Text style = {styles.text}> You have {iscredits} credits in your wallet </Text>
 
 <View style={styles.buttons} >
       <Button onPress={ updateboth5 } title="+5"
@@ -81,16 +83,17 @@ export default function InputCredits()
   }}
 />
 
-<Button onPress={ confirm } //once press confirm, update database?
+{/* <Button onPress={ confirm } //once press confirm, update database?
   title="Confirm"
   icon={{
     name: "arrow-right",
     size: 15,
     color: "Navy"
   }}
-/>
+/> */}
 
-</View>)
+</View>
+)}
 
 function reset() //but doesnt show in the app 
 {  
@@ -146,7 +149,7 @@ function plus50()
 }
 
 
-}
+
 
 
 
@@ -165,7 +168,7 @@ function plus50()
       fontWeight: "bold",
       textAlign: "center",
       fontSize: 30,
-      color: "dark blue",
-      flex: 2,
+      color: "blue",
+      
      }
     });

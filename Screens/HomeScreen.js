@@ -74,9 +74,10 @@ firebase.firestore()
   const db = firebase.firestore();
   const decrement = firebase.firestore.FieldValue.increment(-1);
   const storyRef = db.collection('credits').doc('wallet');
-  // Update read count
-  storyRef.update({ value: decrement });
+  storyRef.update({ value: decrement }); //minus off 1 credit
   console.log('machine1 forcebooked')
+ 
+  
 }
 //function to unbook machine 1. updates the 'isbooked' boolean field in firestore.
 function forceunbookmachine1(){
@@ -153,20 +154,7 @@ forceunbookmachine1
   
 }
 
-function checkcredits(){
-  firebase.firestore()
-  .collection('credits')
-  .doc('wallet')
-  .get('value')
-  .then(
-    documentSnapshot=>{
-      var hi = documentSnapshot.get('value')
-      console.log('6')
-      return (hi)
-    }
-  )
-}
-;
+
 
 
 
@@ -174,6 +162,7 @@ function checkcredits(){
 
 //Check if machine1 is avail. if available, book it.
   function bookmachine1(){
+   
     firebase.firestore()
     .collection('SaracaHall')
     .doc('Machine1')
@@ -187,12 +176,33 @@ function checkcredits(){
         //do something
       }
       if(isbooked == false){
-        //check if got money first (shihui) then minus $1
-        forcebookmachine1()
-        checkcredits()
+        firebase.firestore()
+        .collection('credits')
+        .doc('wallet')
+        .get('value')
+        .then(
+          documentSnapshot=>{
+            var iscredits = documentSnapshot.get('value')
+            console.log(iscredits)
+            if( iscredits > 0){ //check if there is credit
+              forcebookmachine1() //then can book
+              console.log('machine1 booked successfully')
+            }
+            else{
+              console.log('no money woi, top up please.')
+            }
+          }
+        )
+        //forcebookmachine1()
+       /*  const db = firebase.firestore();
+      const decrement = firebase.firestore.FieldValue.increment(-1);
+      const storyRef = db.collection('credits').doc('wallet');
+  // Update read count
+      storyRef.update({ value: decrement }); */
+        
         //add time stamp. if timeout, add refund $1 (derick)
         //push user creds into firebase (derick)
-        console.log('machine1 booked successfully')
+        //console.log('machine1 booked successfully')
         //do something
       }
     
