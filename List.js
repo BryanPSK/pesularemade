@@ -2,9 +2,10 @@ import 'firebase/firestore';
 import * as React from 'react';
 import { View, Text,ScrollView } from 'react-native';
 import { List,FAB, Modal,Portal,Provider,Button,Dialog,Paragraph } from 'react-native-paper'
+import { SafeAreaView } from 'react-navigation';
 import { checkbookingavailability } from './Screens/HomeScreen';
 
-const MyComponent = () => {
+const MyComponent = (props) => {
 
   const [state, setState] = React.useState({ open: false });
   const onStateChange = ({ open }) => setState({ open });
@@ -18,7 +19,9 @@ const MyComponent = () => {
  const showDialogBobby = () => setVisiblebobby(true);
 const hideDialogBobby = () => setVisiblebobby(false);
   return(
+  
   <Provider>
+    
    <View style={{flexDirection:'column'}}>
   <List.AccordionGroup style = {{flex:1}}>
     <List.Accordion title="Saraca Hall" id="1" style={{flex:1}}>
@@ -46,12 +49,12 @@ const hideDialogBobby = () => setVisiblebobby(false);
             
             {
               icon: 'star',
-              label: 'Star',
-              onPress: () => console.log('Pressed star'), //update favourites state?
+              /* label: 'Star', */
+              onPress: () => console.log('Pressed star'),            //update favourites state?
             },
             {
               icon: 'bell',
-              label: 'Remind',
+              /* label: 'Remind', */
               onPress: () => console.log('Pressed notifications'),
               small: false,
             },
@@ -126,7 +129,9 @@ const hideDialogBobby = () => setVisiblebobby(false);
   
   </List.AccordionGroup>
   </View> 
+  
   </Provider>
+  
   )
 };
 

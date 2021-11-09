@@ -14,14 +14,7 @@ import BookingsScreen from './Screens/BookingsScreen'; //import from screens fol
 import SettingsScreen from './Screens/SettingsScreen'; //import from screens folder
 import CreditsScreen from './Screens/CreditsScreen'; //import from screens folder
 import FontAwesome from "react-native-vector-icons/FontAwesome"; //for navigation bar icons
-// import { registerRootComponent } from 'expo';
-// class App extends React.Component {
-//   render() {
-//     return <View />;
-//   }
-// }
 
-// registerRootComponent(AfterLogin);
 const Tab = createBottomTabNavigator();   //bottom navigation bar
 const Stack = createStackNavigator();
 
@@ -44,13 +37,13 @@ export default function MainStack() {
   );
 }
 
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-}
 
 function LoginScreen({ navigation }) { //FIRST LOGIN SCREEN
+
+  const[email, setEmail] = useState("");
+  const[password, setPassword] = useState("");
+
   return (
     <View style={styles.container}>
  
@@ -58,7 +51,7 @@ function LoginScreen({ navigation }) { //FIRST LOGIN SCREEN
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Email."
+          placeholder="Email"
           placeholderTextColor="#003f5c"
           onChangeText={(email) => setEmail(email)} //SET EMAIL
         />
@@ -67,7 +60,7 @@ function LoginScreen({ navigation }) { //FIRST LOGIN SCREEN
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Password."
+          placeholder="Password"
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)} //SET PASSWORD
@@ -78,14 +71,31 @@ function LoginScreen({ navigation }) { //FIRST LOGIN SCREEN
         <Text style={styles.forgot_button}>Forgot Password?</Text> 
       </TouchableOpacity>
  
-      <TouchableOpacity style={styles.loginBtn}> 
-        <Text style={styles.loginText}>LOGIN </Text> 
-        <Button title='LOGIN'  onPress={() => navigation.navigate('AfterLogin')} /> 
-      </TouchableOpacity> 
+      
+        
+        <Button title='LOGIN' style={styles.loginBtn} onPress={loginLogic} /> 
+      
     </View>
   );
+
+
+  function loginLogic()
+{
+  if((email)=='x')
+  {
+    navigation.navigate('AfterLogin')
+  }
+
+  else
+  {
+    alert('wrong')
+  }
+}
+
 }
  
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -99,7 +109,7 @@ const styles = StyleSheet.create({
   },
  
   inputView: {
-    backgroundColor: "#FFC0CB",
+    backgroundColor: "#14d4ff",
     borderRadius: 30,
     width: "70%",
     height: 45,
@@ -113,6 +123,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     marginLeft: 20,
+    fontStyle:'italic',
   },
  
   forgot_button: {
@@ -122,15 +133,14 @@ const styles = StyleSheet.create({
  
   loginBtn: {
     width: "80%",
-    borderRadius: 25,
+    borderRadius: 10,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 40,
-    backgroundColor: "#FF1493",
+    backgroundColor: "#14d4ff",
   },
 });
-
 
 function AfterLogin() { //WHAT YOU SEE AFTER LOGIN
   return (
@@ -158,7 +168,7 @@ function AfterLogin() { //WHAT YOU SEE AFTER LOGIN
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'tomato',
+          activeTintColor: '#11aed1',
           inactiveTintColor: 'gray',
         }}
       >

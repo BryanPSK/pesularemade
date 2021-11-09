@@ -1,13 +1,26 @@
 import * as React from 'react';
-import { Settings, StyleSheet, View ,ScrollView, SafeAreaView} from 'react-native';
+import { StyleSheet, View ,ScrollView, SafeAreaView} from 'react-native';
 import { Colors,Divider,Dialog,Portal,Provider,Paragraph,Button,Avatar, Title, Caption, Text, List,TouchableRipple } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { checkbookingavailability } from './HomeScreen';
+import 'firebase/firestore';
+import firebase from '../firebase/firebaseDB';
+import { useState,useEffect } from 'react';
 //possible user profile settings such as display name etc? or set favourite hall?
+const Getvalue = (props) => {
+  return (
+    <View style={styles.infoBox}>
+      <Title>{props.value} Credit</Title>
+      <Caption> Wallet</Caption>
+    </View>
+  );
+}
 export default function SettingsScreen(){
-  const [visible, setVisible] = React.useState(false);
-  const showDialog  = () => setVisible(true);
-  const hideDialog = () => setVisible(false);
+  const db = firebase.firestore()
+  const[credits,setCredits] = useState([])
+  useEffect(()=>{
+    //App Component will run once and never again
+    db.collection('credits').onSnapshot(snapshot =>(setCredits(snapshot.docs.map(doc =>doc.data()))))
+  },[])
     return(
       <Provider>
       <SafeAreaView style = {styles.container}>
@@ -40,32 +53,86 @@ export default function SettingsScreen(){
           borderRightWidth: 1}]
           }>
             
-            <Caption>wallet</Caption>
+            <View>
+      {credits.map(({value}) =>(
+        <Getvalue value={value}/>
+      ))}
+    </View>
           </View>
         </View>
         <View style={styles.menuWrapper}>
-          <Button title='Your Favourites' onPress={{showDialog}}>
+          
+        {/* <Button title='Your Favourites' onPress={showDialogPayment}>
+      
+      <View style={styles.menuItem}>
+            <Icon name = 'credit-card' color = {Colors.blue500} size={25}></Icon>
+            <Text style = {styles.menuItemText}>Payment Method</Text>
+          </View> 
+          
           <Portal>
+          <Dialog visible={visiblepayment} onDismiss={hideDialogPayment}>
             
-          <Dialog visible={visible} onDismiss={hideDialog}>
-          <Dialog.Content>
-          <Paragraph>This is simple dialog</Paragraph>
-        </Dialog.Content>
-            {/* <View style={styles.menuItem}>
-              <Icon name = 'heart-outline' color = '#FF6347' size={25}></Icon>
-              <Text style = {styles.menuItemText}>Your Favourites</Text>
-            </View> */}
-            </Dialog>
-            </Portal>
-          </Button>
-          <Button onPress={()=>alert('Choose a payment method')}>
+            
+            <Dialog.Title >Please choose your payment method:</Dialog.Title>
+            <Dialog.Actions>
+              <View style={{flex:1}}>
+              <Button onPress={()=>alert('CC')}>Cards</Button>
+              <Button onPress={()=>alert('BA')}>Banking App</Button>
+              <Button onPress={()=>alert('DBSPL')}>DBS Paylah!</Button>
+              <Button onPress={()=>alert('GP')}>GooglePay</Button>
+              <Button onPress={hideDialogPayment}>Dismiss</Button>
+              </View>
+            </Dialog.Actions>
+            
+        
+        
+          </Dialog>
+          
+        </Portal>
+        
+        </Button> */}
+          {/* <Button onPress={showDialogFav}>
             <View style={styles.menuItem}>
-              <Icon name = 'credit-card' color = '#FF6347' size={25}></Icon>
-              <Text style = {styles.menuItemText}>Payment Method</Text>
+              <Icon name = 'heart-outline' color = {Colors.blue500} size={25}></Icon>
+              <Text style = {styles.menuItemText}>Your Favourites</Text>
             </View>
-          </Button>
+            <Portal>
+          <Dialog visible={visiblefav} onDismiss={hideDialogFav}>
+            
+            
+            <Dialog.Title ></Dialog.Title>
+            <Dialog.Actions>
+              <View style={{flex:1}}>
+              <Button onPress={()=>alert('faved saraca')}>Saraca Hall</Button>
+              <Button onPress={()=>alert('faved tama')}>Tamarind Hall</Button>
+              
+              <Button onPress={hideDialogFav}>Dismiss</Button>
+              </View>
+            </Dialog.Actions>
+            
+        
+        
+          </Dialog>
+          
+        </Portal>
+          </Button> */}
     <List.AccordionGroup>
-    <List.Accordion title="Frequently Asked Question" titleStyle={styles.menuItemText}
+    <List.Accordion title="PAYMENT METHODS" titleStyle={styles.menuItemText}
+    left={props => <List.Icon {...props} icon="credit-card" color={Colors.blue500}/>}
+    id="1">
+    <List.Item  title='Credit/Debit Card' onPress={()=>alert('move to external payment screen')}/>
+    <Divider/>
+    <List.Item  title='Google Pay' onPress={()=>alert('move to external payment screen')}/>
+    <Divider/>
+    <List.Item  title='DBS Paylah!' onPress={()=>alert('move to external payment screen')}/>
+    <Divider/>
+    <List.Item  title='PayNow' onPress={()=>alert('move to external payment screen')}/>
+    <Divider/>
+    </List.Accordion>
+    
+    </List.AccordionGroup>
+    <List.AccordionGroup>
+    <List.Accordion title="FREQUENTLY ASKED" titleStyle={styles.menuItemText}
     left={props => <List.Icon {...props} icon="folder" color={Colors.blue500}/>}
     id="1">
       <List.AccordionGroup>
@@ -89,6 +156,14 @@ export default function SettingsScreen(){
     </List.Accordion>
     
   </List.AccordionGroup>
+  <List.AccordionGroup>
+    <List.Accordion title="YOUR FAVOURITES" titleStyle={styles.menuItemText}
+    left={props => <List.Icon {...props} icon="heart" color={Colors.blue500}/>}
+    id="2"><List.Item
+    title="nothing to be found"
+  /></List.Accordion>
+    
+    </List.AccordionGroup>
           {/* <Button onPress={()=>alert('Dialog of FAQ')}>
             <View style={styles.menuItem}>
               <Icon name = 'account-check-outline' color = '#FF6347' size={25}></Icon>
@@ -144,16 +219,17 @@ const styles = StyleSheet.create({
     marginTop:10
   },
   menuItem:{
-    flexDirection:'row',
+    
     paddingVertical:15,
     paddingHorizontal: 30,
+   
   },
   menuItemText:{
     color:'#777777',
     marginLeft: 20,
     fontWeight: '600',
     fontSize: 16,
-    lineHeight: 26
+    lineHeight: 26,
   }
 });
 

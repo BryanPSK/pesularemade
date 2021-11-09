@@ -9,21 +9,22 @@ import { Component } from 'react';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { Avatar, Button, Card, Title, Paragraph, Modal, Portal } from 'react-native-paper';
 import MyComponent from '../List';
-
+import { SafeAreaView } from 'react-navigation';
+import BookingTest from '../onChange/Counter';
 
 
 function BookingsScreen({ navigation }) {
   const LeftContent = props => <Avatar.Icon {...props} icon="washing-machine" />
   
     return (
-    
+      <SafeAreaView>
       <ScrollView>
         
       <Card>
     <Card.Title title="Welcome!" subtitle="Please choose the washing machine you want to use!" left={LeftContent} />
     <Card.Cover source={{ uri: 'https://www.bestslogans.com/img/pics/201711_1113_fdehf.jpg' }} />
     <Card.Content>
-   <MyComponent/>
+   <BookingTest/>
     </Card.Content>
 {/*     <Card.Actions>
     <Button mode="outlined" onPress={() => navigation.navigate('SaracaHall')}>
@@ -36,6 +37,7 @@ function BookingsScreen({ navigation }) {
     </Card.Actions> */}
   </Card>
   </ScrollView>
+  </SafeAreaView>
      
       
     );
@@ -96,7 +98,7 @@ const Stack = createStackNavigator()
       
       <Stack.Navigator>
         
-        <Stack.Screen name ='Bookings' component ={BookingsScreen} 
+        <Stack.Screen name ='Bookings' component ={BookingsScreen} options={{headerShown:false}}
         /* options={{headerRight:() => <View><TextInput placeholder ='Credit Value'
         onChangeText={(count) => setCount(count)}
         /></View>

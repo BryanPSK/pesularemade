@@ -7,18 +7,18 @@ import { Text, View, StyleSheet,TouchableOpacity,Button, Settings} from 'react-n
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import Counter from '../onChange/Counter';
 import InputCredits from '../onChange/InputCredits';
-
-
-
+import { ScrollView } from 'react-native-gesture-handler';
+import Testing from '../Testing';
 
 
 export default function CreditsScreen(){
  
   
   return(
-    <View>
-      <InputCredits/>
-    </View>
+    
+      
+      <Testing/>
+    
   )
 }
 

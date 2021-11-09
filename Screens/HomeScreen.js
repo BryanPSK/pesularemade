@@ -161,7 +161,7 @@ forceunbookmachine1
 
 
 //Check if machine1 is avail. if available, book it.
-  function bookmachine1(){
+  export function bookmachine1(){
    
     firebase.firestore()
     .collection('SaracaHall')
@@ -183,7 +183,7 @@ forceunbookmachine1
         .then(
           documentSnapshot=>{
             var iscredits = documentSnapshot.get('value')
-            console.log(iscredits)
+            /* console.log(iscredits) */
             if( iscredits > 0){ //check if there is credit
               forcebookmachine1() //then can book
               console.log('machine1 booked successfully')
