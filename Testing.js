@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { ActivityIndicator, FlatList, View, Text } from 'react-native';
-import InputCredits from './onChange/InputCredits';
+import InputCreditsStack from './onChange/InputCredits';
 
 
 import Extra from './extra';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Avatar, Button, Card, Title, Paragraph, Modal, Portal } from 'react-native-paper';
 import { SafeAreaView } from 'react-navigation';
+import InputCredits from './onChange/InputCredits';
+
 export default function Testing() {
   const LeftContent = props => <Avatar.Icon {...props} icon="credit-card" />
   

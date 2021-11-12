@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View ,ScrollView, SafeAreaView} from 'react-native';
+import { StyleSheet, View ,ScrollView, SafeAreaView,TextInput, StatusBar} from 'react-native';
 import { Colors,Divider,Dialog,Portal,Provider,Paragraph,Button,Avatar, Title, Caption, Text, List,TouchableRipple } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import 'firebase/firestore';
@@ -9,12 +9,16 @@ import { useState,useEffect } from 'react';
 const Getvalue = (props) => {
   return (
     <View style={styles.infoBox}>
-      <Title>{props.value} Credit</Title>
+      <Title style={styles.text}>{props.value} CREDITS</Title>
       <Caption> Wallet</Caption>
     </View>
   );
 }
 export default function SettingsScreen(){
+  const[email,setEmail]=useState('')
+  const[phone,setPhone]=useState('')
+  const[username,setUsername]=useState('')
+  const[name,setName]=useState('')
   const db = firebase.firestore()
   const[credits,setCredits] = useState([])
   useEffect(()=>{
@@ -23,154 +27,192 @@ export default function SettingsScreen(){
   },[])
     return(
       <Provider>
-      <SafeAreaView style = {styles.container}>
+      <SafeAreaView >
         <ScrollView>
+          
+          <View style = {styles.container}>
         <View style={styles.userInfoSection}>
-          <View style={{flexDirection:'row', marginTop: 15}}>
+          <View style={{flexDirection:'row', marginTop: 15,}}>
             <Avatar.Image
             source={{uri:'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg'}}
             size={80} />
             <View styles={{marginLeft: 20}}>
-               <Title style={styles.title,{marginTop:15,marginBottom: 5,}}>Chris Evans</Title>
-               <Caption style={styles.caption}>@cevans_</Caption>
+            <TextInput
+          style={{marginTop:15,marginBottom: 5,marginLeft:5,fontStyle:'italic'}}
+          keyboardType='default'
+          placeholder="Name"
+          placeholderTextColor="#003f5c"
+          secureTextEntry={false}
+          onChangeText={name => setName(name)} 
+        />
+         <TextInput
+          style={{marginTop:5,fontStyle:'italic',marginLeft:5}}
+          keyboardType='default'
+          placeholder="Username"
+          placeholderTextColor="#003f5c"
+          secureTextEntry={false}
+          onChangeText={username => setUsername(username)} 
+        />
+               {/* <Title style={styles.title,{marginTop:15,marginBottom: 5,}}>Chris Evans</Title> */}
+               {/* <Caption style={styles.caption}>@cevans_</Caption> */}
             </View>
         </View>
         </View>
         <View style={styles.userInfoSection}>
           <View style={styles.row}>
             <Icon name='phone' color='#777777' size={20}/>
-            <Text style={{color:'#777777',marginLeft:20}}>91234567</Text>
+            <View>
+            <TextInput
+          style={styles.TextInput}
+          keyboardType='phone-pad'
+          placeholder="Phone"
+          placeholderTextColor="#003f5c"
+          secureTextEntry={false}
+          onChangeText={phone => setPhone(phone)} //SET EMAIL
+        />
+        </View>
+        
+      
+            {/* <Text style={{color:'#777777',marginLeft:20}}>91234567</Text> */}
           </View>
           <View style={styles.row}>
             <Icon name='email' color='#777777' size={20}/>
-            <Text style={{color:'#777777',marginLeft:20}}>c.evans@xyz.com</Text>
+            <View>
+            <TextInput
+          style={styles.TextInput}
+          keyboardType='email-address'
+          placeholder="Email"
+          placeholderTextColor="#003f5c"
+          secureTextEntry={false}
+          onChangeText={email => setEmail(email)} //SET EMAIL
+        />
+        </View>
+            {/* <Text style={{color:'#777777',marginLeft:20}}>c.evans@xyz.com</Text> */}
           </View>
         </View>
-        <View style={styles.infoBoxWrapper}>
+        {/* <View style={styles.infoBoxWrapper}>
           
           <View style={[styles.infoBox, {
           borderRightColor:'#dddddd',
           borderRightWidth: 1}]
           }>
             
-            <View>
+            <View style={styles.containerforwallet}>
       {credits.map(({value}) =>(
         <Getvalue value={value}/>
       ))}
     </View>
           </View>
-        </View>
-        <View style={styles.menuWrapper}>
-          
-        {/* <Button title='Your Favourites' onPress={showDialogPayment}>
+        </View> */}
+      </View>
+        <View style={styles.footer}>
+        
+    <List.AccordionGroup style={{flex:1}}>
+    <List.Accordion title="Payment Methods" style={{backgroundColor:'white'}} titleStyle={styles.menuItemText}
+    left={props => <List.Icon {...props} icon="credit-card" color='#6b9080'/>}
+    id="1">
       
-      <View style={styles.menuItem}>
-            <Icon name = 'credit-card' color = {Colors.blue500} size={25}></Icon>
-            <Text style = {styles.menuItemText}>Payment Method</Text>
-          </View> 
-          
-          <Portal>
-          <Dialog visible={visiblepayment} onDismiss={hideDialogPayment}>
-            
-            
-            <Dialog.Title >Please choose your payment method:</Dialog.Title>
-            <Dialog.Actions>
-              <View style={{flex:1}}>
-              <Button onPress={()=>alert('CC')}>Cards</Button>
-              <Button onPress={()=>alert('BA')}>Banking App</Button>
-              <Button onPress={()=>alert('DBSPL')}>DBS Paylah!</Button>
-              <Button onPress={()=>alert('GP')}>GooglePay</Button>
-              <Button onPress={hideDialogPayment}>Dismiss</Button>
-              </View>
-            </Dialog.Actions>
-            
-        
-        
-          </Dialog>
-          
-        </Portal>
-        
-        </Button> */}
-          {/* <Button onPress={showDialogFav}>
-            <View style={styles.menuItem}>
-              <Icon name = 'heart-outline' color = {Colors.blue500} size={25}></Icon>
-              <Text style = {styles.menuItemText}>Your Favourites</Text>
-            </View>
-            <Portal>
-          <Dialog visible={visiblefav} onDismiss={hideDialogFav}>
-            
-            
-            <Dialog.Title ></Dialog.Title>
-            <Dialog.Actions>
-              <View style={{flex:1}}>
-              <Button onPress={()=>alert('faved saraca')}>Saraca Hall</Button>
-              <Button onPress={()=>alert('faved tama')}>Tamarind Hall</Button>
-              
-              <Button onPress={hideDialogFav}>Dismiss</Button>
-              </View>
-            </Dialog.Actions>
-            
-        
-        
-          </Dialog>
-          
-        </Portal>
-          </Button> */}
-    <List.AccordionGroup>
-    <List.Accordion title="PAYMENT METHODS" titleStyle={styles.menuItemText}
-    left={props => <List.Icon {...props} icon="credit-card" color={Colors.blue500}/>}
-    id="1">
-    <List.Item  title='Credit/Debit Card' onPress={()=>alert('move to external payment screen')}/>
+    <List.Item  title='Credit/Debit Card'style={styles.FAQtext} onPress={()=>alert('move to external payment screen')}/>
     <Divider/>
-    <List.Item  title='Google Pay' onPress={()=>alert('move to external payment screen')}/>
+    <List.Item  title='Google Pay' style={styles.FAQtext} onPress={()=>alert('move to external payment screen')}/>
     <Divider/>
-    <List.Item  title='DBS Paylah!' onPress={()=>alert('move to external payment screen')}/>
+    <List.Item  title='DBS Paylah!' style={styles.FAQtext} onPress={()=>alert('move to external payment screen')}/>
     <Divider/>
-    <List.Item  title='PayNow' onPress={()=>alert('move to external payment screen')}/>
+    <List.Item  title='PayNow' style={styles.FAQtext} onPress={()=>alert('move to external payment screen')}/>
     <Divider/>
+    
     </List.Accordion>
     
-    </List.AccordionGroup>
-    <List.AccordionGroup>
-    <List.Accordion title="FREQUENTLY ASKED" titleStyle={styles.menuItemText}
-    left={props => <List.Icon {...props} icon="folder" color={Colors.blue500}/>}
-    id="1">
+    
+    <Divider/>
+    
+    <List.Accordion title="FAQ" titleStyle={styles.menuItemText} style={{backgroundColor:'white'}}
+    left={props => <List.Icon {...props} icon="folder" color='#6b9080'/>}
+    id="2">
       <List.AccordionGroup>
-        <List.Accordion title="Q1.How does Pesula works?" id="2">
-         <List.Item title=".................................." />
+        <List.Accordion title="Q1. How does Pesula works?" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="2">
+         <Text style={styles.FAQtext}>Pesula is a smart mobile application that enables users to book in advance their laundry timeslot using cashless payment!</Text>
           <Divider/>
         </List.Accordion>
         </List.AccordionGroup>
+        <Divider/>
         <List.AccordionGroup>
-        <List.Accordion title="Q2.How to book?" id="2">
-         <List.Item title=".................................." />
+        <List.Accordion title="Q2. How do I make a booking?" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="2">
+         <Text style={styles.FAQtext}>Check to see if a machine is available by clicking on it! If it’s available, great! Make sure you have enough credits to make a successful booking.</Text>
           <Divider/>
         </List.Accordion>
         </List.AccordionGroup>
+        <Divider/>
         <List.AccordionGroup>
-        <List.Accordion title="Q3.Is there refund?" id="2">
-         <List.Item title=".................................." />
+        <List.Accordion title="Q3. Can I refund my booking?" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="2">
+        <Text style={styles.FAQtext}>If you don’t enter the OTP within 15 minutes, your booking slot is immediately forfeited and released to other users.</Text>
           <Divider/>
         </List.Accordion>
         </List.AccordionGroup>
+        <Divider/>
+        <List.AccordionGroup>
+        <List.Accordion title="Q4. How long is one cycle?" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="2">
+         <Text style={styles.FAQtext}>1 hour from the moment you entered the OTP.</Text>
+          <Divider/>
+        </List.Accordion>
+        </List.AccordionGroup>
+        <Divider/>
     </List.Accordion>
     
-  </List.AccordionGroup>
-  <List.AccordionGroup>
-    <List.Accordion title="YOUR FAVOURITES" titleStyle={styles.menuItemText}
-    left={props => <List.Icon {...props} icon="heart" color={Colors.blue500}/>}
-    id="2"><List.Item
-    title="nothing to be found"
-  /></List.Accordion>
+  
+  <Divider/>
+  
+    <List.Accordion title="Your Favourites" titleStyle={styles.menuItemText} style={{backgroundColor:'white'}}
+    left={props => <List.Icon {...props} icon="heart" color='#6b9080'/>}
+    id="3">
+      <View style={{backgroundColor:'white'}}>
+        
+      <List.Item
+    title="Saraca Hall - Sophie" 
+  /></View>
+  </List.Accordion>
+  <Divider/>
+  <List.Accordion title="Privacy" titleStyle={styles.menuItemText} style={{backgroundColor:'white'}}
+    left={props => <List.Icon {...props} icon="security" color='#6b9080'/>}
+    id="4">
+      <List.AccordionGroup>
+        <List.Accordion title="Account Settings" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="4">
+        <List.Item  title='Change Password'style={styles.FAQtext} onPress={()=>alert('move to external change password screen')}/>
+          <Divider/>
+          <List.Item  title='Change Email'style={styles.FAQtext} onPress={()=>alert('move to external change email screen')}/>
+          <Divider/>
+        </List.Accordion>
+        </List.AccordionGroup>
+        <Divider/>
+        <List.AccordionGroup>
+        <List.Accordion title="Wallet Settings" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="4">
+         <Text style={styles.FAQtext}></Text>
+          <Divider/>
+        </List.Accordion>
+        </List.AccordionGroup>
+        <Divider/>
+        <List.AccordionGroup>
+        {/* <List.Accordion title="Profile Settings" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="4">
+        <Text style={styles.FAQtext}>If you don’t enter the OTP within 15 minutes, your booking slot is immediately forfeited and released to other users.</Text>
+          <Divider/>
+        </List.Accordion> */}
+        </List.AccordionGroup>
+        {/* <Divider/>
+        <List.AccordionGroup>
+        <List.Accordion title="Q4. How long is one cycle?" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="4">
+         <Text style={styles.FAQtext}>1 hour from the moment you entered the OTP.</Text>
+          <Divider/>
+        </List.Accordion>
+        </List.AccordionGroup>
+        <Divider/> */}
+    </List.Accordion>
+    
+  
+  <Divider/>
     
     </List.AccordionGroup>
-          {/* <Button onPress={()=>alert('Dialog of FAQ')}>
-            <View style={styles.menuItem}>
-              <Icon name = 'account-check-outline' color = '#FF6347' size={25}></Icon>
-              <Text style = {styles.menuItemText}>Frequently Asked Questions</Text>
-            </View>
-          </Button> */}
         </View>
+        
             </ScrollView>
       </SafeAreaView>
       </Provider>
@@ -180,9 +222,11 @@ export default function SettingsScreen(){
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex:1
-  },
+    container:{
+    flex:1,
+    backgroundColor:'#edf2f2'
+},
+
   userInfoSection: {
     paddingHorizontal:30,
     marginBottom: 25,
@@ -202,9 +246,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   infoBoxWrapper:{
-    borderBottomColor: '#dddddd',
+    borderBottomColor: 'white',
     borderBottomWidth: 1,
-    borderTopColor: '#dddddd',
+    borderTopColor: 'white',
     borderTopWidth: 1,
     flexDirection:'row',
     height: 100,
@@ -214,6 +258,8 @@ const styles = StyleSheet.create({
     flex:1,
     alignItems:'center',
     justifyContent:'center',
+   
+    backgroundColor:'#f6fff8'
   },
   menuWrapper:{
     marginTop:10
@@ -225,12 +271,37 @@ const styles = StyleSheet.create({
    
   },
   menuItemText:{
-    color:'#777777',
-    marginLeft: 20,
+    color:'black',
+  
     fontWeight: '600',
     fontSize: 16,
     lineHeight: 26,
-  }
+  },
+  text:{
+    fontWeight: "600",
+    fontStyle: "italic",
+    textAlign: "center",
+    fontSize: 23.5,
+    color: "black",
+  },
+  FAQtext:{
+    backgroundColor:'white',
+    flex:1,
+    fontStyle: 'italic',
+  },
+  footer: {
+    flex: 1,
+    backgroundColor: '#fff',
+   
+   
+    paddingBottom:250,
+},
+TextInput: {
+ 
+  marginLeft: 10,
+  fontStyle:'italic',
+},
+  
 });
 
 

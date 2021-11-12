@@ -65,8 +65,8 @@ function forcebookmachine1(){
 firebase.firestore()
   .collection('SaracaHall')
   .doc('Machine1')
-  .collection('bookstatus')
-  .doc('bookstatus')
+  .collection('Availability')
+  .doc('1pm to 2pm')
   .set({
     isbooked: true,
     // timestamp: firebase.firestore.FieldValue.serverTimestamp()

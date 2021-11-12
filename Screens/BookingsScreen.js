@@ -10,34 +10,28 @@ import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { Avatar, Button, Card, Title, Paragraph, Modal, Portal } from 'react-native-paper';
 import MyComponent from '../List';
 import { SafeAreaView } from 'react-navigation';
-import BookingTest from '../onChange/Counter';
-
+import BookingTest from '../onChange/BookingTest';
+import BOOKINGS from '../Image/BOOKINGS.png';
 
 function BookingsScreen({ navigation }) {
   const LeftContent = props => <Avatar.Icon {...props} icon="washing-machine" />
   
     return (
-      <SafeAreaView>
+      
       <ScrollView>
-        
+       <View> 
       <Card>
-    <Card.Title title="Welcome!" subtitle="Please choose the washing machine you want to use!" left={LeftContent} />
-    <Card.Cover source={{ uri: 'https://www.bestslogans.com/img/pics/201711_1113_fdehf.jpg' }} />
+    <Card.Title /* title="Welcome!" subtitle="Please choose the washing machine you want to use!" left={LeftContent} */ />
+    
+    <Card.Cover style={{resizeMode:'cover', borderRadius:20, marginLeft:15,marginRight:15,marginTop:20}}source={BOOKINGS} />
+    
     <Card.Content>
    <BookingTest/>
     </Card.Content>
-{/*     <Card.Actions>
-    <Button mode="outlined" onPress={() => navigation.navigate('SaracaHall')}>
-    SaracaHall
-  </Button>
-  <Button mode="outlined" onPress={() => navigation.navigate('TamarindHall')}>
-    TamarindHall
-  </Button>
-      
-    </Card.Actions> */}
-  </Card>
+      </Card>
+  </View>
   </ScrollView>
-  </SafeAreaView>
+  
      
       
     );
