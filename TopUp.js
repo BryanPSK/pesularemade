@@ -138,8 +138,7 @@ function TopupMethods(){
     
     </List.Accordion>
     
-    </List.AccordionGroup>
-    <List.AccordionGroup>
+    
     <List.Accordion title="Banking app" description='Use bank transfer' style={styles.alltopupmethods} titleStyle={styles.menuItemText}
     left={props => <List.Icon {...props} icon="bank"  color='#6b9080'/>}
     id="2">
@@ -155,7 +154,7 @@ function TopupMethods(){
     
     </List.Accordion>
     
-    </List.AccordionGroup>
+    
     <List.Accordion title="Others" description='Linked your external payment applications once for quick top-ups' titleStyle={styles.menuItemText}  style={styles.alltopupmethods}
     left={props => <List.Icon {...props} icon="tree"  color='#6b9080'/>}
     id="3">
@@ -169,6 +168,7 @@ function TopupMethods(){
     <Divider/>
     
     </List.Accordion>
+    </List.AccordionGroup>
     </View>
   )
 }
@@ -205,6 +205,7 @@ const InputTopUp=()=>{
     //   console.log(amount)
        console.log(myInt)
     //   console.log(Number.isInteger(myInt))
+
       if(checkingifinteger==true){
         console.log('number')
         const db = firebase.firestore();
@@ -214,6 +215,7 @@ const InputTopUp=()=>{
     // Update read count
     storyRef.update({ value: increment });
     setAmount('') //revert back to original look of text input
+    alert('Successfully top up.')
       }
       else{
           console.log('NAN')
@@ -224,7 +226,7 @@ const InputTopUp=()=>{
   }
     
 }
-
+//not in use
 function GetPastTransactions(props){
  console.log(props.value)
  console.log(props.transactions)
@@ -241,6 +243,7 @@ function GetPastTransactions(props){
     </View>
   );
 }
+//not in use
 function PastTransactions(){
   const db=firebase.firestore()
   var transactions = []
@@ -298,6 +301,7 @@ const Getvalue = (props) => {
     const db = firebase.firestore();
     const storyRef = db.collection('credits').doc('wallet');
     storyRef.update({ value: 0 });
+    
   }
   
   // function confirm() 
@@ -314,7 +318,7 @@ const Getvalue = (props) => {
     const storyRef = db.collection('credits').doc('wallet');
     // Update read count
     storyRef.update({ value: increment });
-    
+    alert('Successfully top up 5 credits.')
   }
   
   function plus10()
@@ -325,6 +329,7 @@ const Getvalue = (props) => {
     const storyRef = db.collection('credits').doc('wallet');
     // Update read count
     storyRef.update({ value: increment });
+    alert('Successfully top up 10 credits.')
   }
   
   function plus20()
@@ -335,6 +340,7 @@ const Getvalue = (props) => {
     const storyRef = db.collection('credits').doc('wallet');
     // Update read count
     storyRef.update({ value: increment });
+    alert('Successfully top up 20 credits.')
   }
   
   function plus50()
@@ -345,6 +351,7 @@ const Getvalue = (props) => {
     const storyRef = db.collection('credits').doc('wallet');
     // Update read count
     storyRef.update({ value: increment });
+    alert('Successfully top up 50 credits.')
   }
 
   const styles = StyleSheet.create({

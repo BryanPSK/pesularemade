@@ -9,11 +9,11 @@ import { SafeAreaView } from 'react-navigation';
 import { scheduleJob } from 'node-schedule';
 
 var otp = 1234;
-//not in used
+
 function Scheduling1to2pmtimeslot(){
 const schedule = require('node-schedule')
 const job = schedule.scheduleJob('0 13 * * *',function(){
-  var timeout = setTimeout(function(){Unbook1pm()},60000);
+  var timeout = setTimeout(function(){ChangesOfYourBookingAfter2pm()},60000);
 })}
 
 //otp related functions
@@ -48,7 +48,7 @@ function Unbook1pm(){
 })
 alert('Machine successfully unbooked')
 }//
-function Unbook1pmCauseBookWrongly(){
+function Unbook1pmCauseBookWrongly(){ //refund back credits
   firebase.firestore()
   .collection('SaracaHall')
 .doc('Machine1')
@@ -63,6 +63,17 @@ const db = firebase.firestore();
   const increment = firebase.firestore.FieldValue.increment(+1);
   const storyRef = db.collection('credits').doc('wallet');
   storyRef.update({ value: increment });
+}
+function ChangesOfYourBookingAfter2pm(){
+  firebase.firestore()
+  .collection('SaracaHall')
+.doc('Machine1')
+.collection('Availability')
+.doc('1pm to 2pm')
+.update({
+  
+  isitbooked: '',
+})
 }
 function forcebook1pm()
 {
@@ -131,7 +142,7 @@ function Tobook1to2pm(){
             if( iscredits > 0){ //check if there is credit
               forcebook1pm() //then can book, maybe can give otp here?
               TimeoutAfter15minsAndRestrictBookingFrom130pm() //if otp not keyed into the pi within 15 mins
-             
+              Scheduling1to2pmtimeslot() //auto remove your bookings value after the time slot is up
 
              }
             else{
@@ -188,7 +199,7 @@ const hideDialogBobby = () => setVisiblebobby(false);
     left={props => <List.Icon {...props} icon="leaf" color='#6b9080'/>}
     id="1">
         <List.AccordionGroup>
-        <List.Accordion title="Level 6" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="1">
+        <List.Accordion title="Level 6" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="2">
         <List.Item title= "Sophie"  titleStyle={{color:'black'}} style={{backgroundColor:'white'}} onPress={showDialogSophie}  />
         <Portal>
           <Dialog visible={visiblesophie} onDismiss={hideDialogSophie}>
@@ -235,7 +246,7 @@ const hideDialogBobby = () => setVisiblebobby(false);
           
         </Portal>
           
-        <List.Item title= "Bobby"  titleStyle={{color:'black'}} style={{backgroundColor:'white'}} onPress={showDialogBobby} id="2"/>
+        <List.Item title= "Bobby"  titleStyle={{color:'black'}} style={{backgroundColor:'white'}} onPress={showDialogBobby}/>
         <Portal>
           <Dialog visible={visiblebobby} onDismiss={hideDialogBobby} >
             
@@ -279,9 +290,9 @@ const hideDialogBobby = () => setVisiblebobby(false);
     </List.AccordionGroup>
     <Divider/>
     <List.AccordionGroup>
-        <List.Accordion title="Level 9"  titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="1">
+        <List.Accordion title="Level 9"  titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="3">
         <List.Item title="Zoey"   titleStyle={{color:'black'}} style={{backgroundColor:'white'}} onPress={() => alert('Clicked on Zoey!')}/>
-        <List.Item title="Charlie" style={{backgroundColor:'white'}} onPress={() => alert('Clicked on Charlie!')} id="3"/>
+        <List.Item title="Charlie" style={{backgroundColor:'white'}} onPress={() => alert('Clicked on Charlie!')} />
         </List.Accordion>
         <Divider/>
     </List.AccordionGroup>
@@ -289,7 +300,7 @@ const hideDialogBobby = () => setVisiblebobby(false);
     <Divider/>
     <List.Accordion title="Tamarind"  titleStyle={{color:'black'}} style={{backgroundColor:'white'}} titleStyle={styles.menuItemText} style={{backgroundColor:'white'}}
     left={props => <List.Icon {...props} icon="leaf" color='#6b9080'/>}
-    id="2">
+    id="4">
     <List.Item title="Zoey" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} onPress={() => alert('Clicked on Zoey!')} />
         <List.Item title="Charlie"  titleStyle={{color:'black'}} style={{backgroundColor:'white'}} onPress={() => alert('Clicked on Charlie!')} />
     </List.Accordion>

@@ -101,7 +101,7 @@ export default function CreditsStack(){
     <View>
 
     <View style={{flexDirection:'row',backgroundColor:'white',paddingBottom:300}}>
-  <Button  onPress={reset} 
+  <Button  onPress={withdrawl} 
   mode='contained'
   icon='arrow-top-left'
   style={{flex:1, marginRight:2}}
@@ -146,12 +146,28 @@ export default function CreditsStack(){
 //     )
 //   }
 // }
-
+function withdrawl(){
+  firebase.firestore()
+  .collection('credits')
+  .doc('wallet')
+  .get()
+  .then(DocumentSnapshot=>{
+    var iscredits = DocumentSnapshot.get('value')
+    if(iscredits>0){
+      reset()
+      alert('Successfully withdrawn credits.')
+    }
+    else{
+      alert('Credits had already been withdrawn. No credits in wallet currently.')
+    }
+  })
+}
 function reset() //but doesnt show in the app 
 {  
   const db = firebase.firestore();
   const storyRef = db.collection('credits').doc('wallet');
   storyRef.update({ value: 0 });
+  alert('Successfully withdrawl credits.')
 }
 
 // function confirm() 

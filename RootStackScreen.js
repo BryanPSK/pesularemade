@@ -11,7 +11,7 @@ const RootStackScreen =({navigation})=>{
 <RootStack.Navigator>
     <RootStack.Screen name='SplashScreen' component={SplashScreen} options={{headerShown:false}}/> 
     <RootStack.Screen name='SignInScreen' component={SignInScreen}options={{headerShown:false}}/>
-    <RootStack.Screen name='SignUpScreen' component={SignUpScreen}options={{headerShown:false}}/>
+    {/* <RootStack.Screen name='SignUpScreen' component={SignUpScreen}options={{headerShown:false}}/> */}
    
     
 </RootStack.Navigator>)

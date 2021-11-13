@@ -130,28 +130,28 @@ export default function SettingsScreen(){
     left={props => <List.Icon {...props} icon="folder" color='#6b9080'/>}
     id="2">
       <List.AccordionGroup>
-        <List.Accordion title="Q1. How does Pesula works?" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="2">
+        <List.Accordion title="Q1. How does Pesula works?" id="1" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} >
          <Text style={styles.FAQtext}>Pesula is a smart mobile application that enables users to book in advance their laundry timeslot using cashless payment!</Text>
           <Divider/>
         </List.Accordion>
-        </List.AccordionGroup>
+        
         <Divider/>
-        <List.AccordionGroup>
-        <List.Accordion title="Q2. How do I make a booking?" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="2">
+        
+        <List.Accordion title="Q2. How do I make a booking?" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} >
          <Text style={styles.FAQtext}>Check to see if a machine is available by clicking on it! If it’s available, great! Make sure you have enough credits to make a successful booking.</Text>
           <Divider/>
         </List.Accordion>
-        </List.AccordionGroup>
+        
         <Divider/>
-        <List.AccordionGroup>
-        <List.Accordion title="Q3. Can I refund my booking?" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="2">
+        
+        <List.Accordion title="Q3. Can I refund my booking?" id="3" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} >
         <Text style={styles.FAQtext}>If you don’t enter the OTP within 15 minutes, your booking slot is immediately forfeited and released to other users.</Text>
           <Divider/>
         </List.Accordion>
-        </List.AccordionGroup>
+        
         <Divider/>
-        <List.AccordionGroup>
-        <List.Accordion title="Q4. How long is one cycle?" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="2">
+        
+        <List.Accordion title="Q4. How long is one cycle?" id="4" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} >
          <Text style={styles.FAQtext}>1 hour from the moment you entered the OTP.</Text>
           <Divider/>
         </List.Accordion>
@@ -176,22 +176,22 @@ export default function SettingsScreen(){
     left={props => <List.Icon {...props} icon="security" color='#6b9080'/>}
     id="4">
       <List.AccordionGroup>
-        <List.Accordion title="Account Settings" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="4">
+        <List.Accordion title="Account Settings" id="1" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="4">
         <List.Item  title='Change Password'style={styles.FAQtext} onPress={()=>alert('move to external change password screen')}/>
           <Divider/>
           <List.Item  title='Change Email'style={styles.FAQtext} onPress={()=>alert('move to external change email screen')}/>
           <Divider/>
         </List.Accordion>
-        </List.AccordionGroup>
+        
         <Divider/>
-        <List.AccordionGroup>
-        <List.Accordion title="Wallet Settings" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="4">
+        
+        <List.Accordion title="Wallet Settings" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} >
          <Text style={styles.FAQtext}></Text>
           <Divider/>
         </List.Accordion>
-        </List.AccordionGroup>
+        
         <Divider/>
-        <List.AccordionGroup>
+        
         {/* <List.Accordion title="Profile Settings" id="2" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="4">
         <Text style={styles.FAQtext}>If you don’t enter the OTP within 15 minutes, your booking slot is immediately forfeited and released to other users.</Text>
           <Divider/>

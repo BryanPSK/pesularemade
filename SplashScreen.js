@@ -18,7 +18,7 @@ const SplashScreen = ({navigation}) =>{
             <Text style={styles.title}>Laundry at your fingertips...</Text>
             <Text style={styles.text}>Sign in to your account</Text>
             <View style={styles.button}>
-                <Button onPress={() => navigation.navigate('SignUpScreen')}
+                <Button onPress={() => navigation.navigate('SignInScreen')}
                 mode='contained'
                 compact='true'
                 contentStyle={{backgroundColor:'#cce3de'}}
