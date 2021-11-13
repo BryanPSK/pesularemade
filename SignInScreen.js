@@ -67,11 +67,11 @@ import { useState } from 'react';
         const[password,setPassword]=useState('')
         function Forgetpassword(){
             alert('your password has been reset to: rtyqt123')
-            setSignuppassword('rtyqt123')
+            setPassword('')
         }
        function loginLogic(props)
         {
-          if(email=='x') //make sure pw is rtyqt123
+          if(email=='x' ) //make sure pw is rtyqt123
           {
             navigation.navigate('AfterLogin') 
             setEmail('')
