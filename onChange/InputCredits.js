@@ -167,7 +167,7 @@ function reset() //but doesnt show in the app
   const db = firebase.firestore();
   const storyRef = db.collection('credits').doc('wallet');
   storyRef.update({ value: 0 });
-  alert('Successfully withdrawl credits.')
+  
 }
 
 // function confirm() 

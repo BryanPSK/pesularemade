@@ -71,7 +71,7 @@ import { useState } from 'react';
         }
        function loginLogic(props)
         {
-          if(email=='x' ) //make sure pw is rtyqt123
+          if(email=='michellegong@gmail.com' && password == 'rtyqt123' ) //make sure pw is rtyqt123
           {
             navigation.navigate('AfterLogin') 
             setEmail('')

@@ -287,9 +287,9 @@ const hideDialogBobby = () => setVisiblebobby(false);
           </Dialog>
         </Portal>
         </List.Accordion>
-    </List.AccordionGroup>
+    
     <Divider/>
-    <List.AccordionGroup>
+    
         <List.Accordion title="Level 9"  titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="3">
         <List.Item title="Zoey"   titleStyle={{color:'black'}} style={{backgroundColor:'white'}} onPress={() => alert('Clicked on Zoey!')}/>
         <List.Item title="Charlie" style={{backgroundColor:'white'}} onPress={() => alert('Clicked on Charlie!')} />

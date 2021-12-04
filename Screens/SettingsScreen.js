@@ -176,7 +176,7 @@ export default function SettingsScreen(){
     left={props => <List.Icon {...props} icon="security" color='#6b9080'/>}
     id="4">
       <List.AccordionGroup>
-        <List.Accordion title="Account Settings" id="1" titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="4">
+        <List.Accordion title="Account Settings"  titleStyle={{color:'black'}} style={{backgroundColor:'white'}} id="1">
         <List.Item  title='Change Password'style={styles.FAQtext} onPress={()=>alert('move to external change password screen')}/>
           <Divider/>
           <List.Item  title='Change Email'style={styles.FAQtext} onPress={()=>alert('move to external change email screen')}/>
